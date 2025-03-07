@@ -32,7 +32,10 @@ jobs:
           cache: 'npm'
           
       - name: Create env file
-        run: echo "REACT_APP_WEATHER_API_KEY=${{ secrets.REACT_APP_WEATHER_API_KEY }}" > .env
+        run: |
+          echo "REACT_APP_DEFAULT_CITY=${{ vars.REACT_APP_DEFAULT_CITY }}" >> .env
+          echo "REACT_APP_DEFAULT_CITY_CARDS=${{ vars.REACT_APP_DEFAULT_CITY_CARDS }}" >> .env
+          echo "REACT_APP_WEATHER_API_KEY=${{ secrets.REACT_APP_WEATHER_API_KEY }}" >> .env
           
       - name: Debug env file
         run: cat .env
