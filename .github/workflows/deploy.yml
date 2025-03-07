@@ -29,9 +29,10 @@ jobs:
         with:
           node-version: "20"
           cache: 'npm'
+          
       - name: Create env file
-        run: |
-          echo "REACT_APP_WEATHER_API_KEY=${{ secrets.REACT_APP_WEATHER_API_KEY }}" >> .env
+        run: echo "REACT_APP_WEATHER_API_KEY=${{ secrets.REACT_APP_WEATHER_API_KEY }}" > .env
+          
       - name: Debug env file
         run: cat .env
 
@@ -41,6 +42,7 @@ jobs:
       - name: Build React App
         env:
           CI: false
+          REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
         run: npm run build
         
       - name: Upload artifact
